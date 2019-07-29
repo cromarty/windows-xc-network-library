@@ -40,7 +40,7 @@ BOOL WINAPI __declspec(dllexport) LibMain(HINSTANCE hDLLInst, DWORD fdwReason, L
 
 
 
-SOCKET WINAPI __declspec (dllexport) net_get_tcp_stream_socket(int *wsaErr) {
+SOCKET WINAPI __declspec(dllexport) net_get_tcp_stream_socket(int *wsaErr) {
     SOCKET fdSock;
     if (( fdSock = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
         *wsaErr = WSAGetLastError();
@@ -53,14 +53,16 @@ SOCKET WINAPI __declspec (dllexport) net_get_tcp_stream_socket(int *wsaErr) {
 
 
 
-int WINAPI __declspec (dllexport) net_socket_set_linger( int onoff, int linger, SOCKET *fdSock ) {
+int WINAPI __declspec(dllexport) net_socket_set_linger( int onoff, int linger, SOCKET *fdSock, int *wsaErr ) {
 	struct linger lng;
 
 	lng.l_onoff = onoff;
 	lng.l_linger = linger;
 
-	if ( setsockopt( *fdSock, SOL_SOCKET, SO_LINGER, (char*)&lng, sizeof(lng) ) == SOCKET_ERROR )
+	if ( setsockopt( *fdSock, SOL_SOCKET, SO_LINGER, (char*)&lng, sizeof(lng) ) == SOCKET_ERROR ) {
+        *wsaErr = WSAGetLastError();
 		return -1;
+    }
 
 	return 0;
 

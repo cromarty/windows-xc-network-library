@@ -15,7 +15,8 @@ static void net_wsa_startup(void) {
 //				if (wsaData.wVersion != wVersionRequested)
 //					return FALSE;
 
-printf("Called WSAStartup()\n");
+    //printf("Called WSAStartup()\n");
+    return;
 }
 
 void (*funcptr1)(void) SECTION(".ctors") = net_wsa_startup;
@@ -39,12 +40,14 @@ void construct1 () __attribute__ ((constructor (101)));
 */
 
 void construct1 () {
-    printf ("\n      construct1() constructor -- (.section .ctors) priority 101\n");
+    //printf ("\n      construct1() constructor -- (.section .ctors) priority 101\n");
+    return;
 }
 
 /*
 void construct2 () {
-    printf ("\n      construct2() constructor -- (.section .ctors) priority 102\n");
+    //printf ("\n      construct2() constructor -- (.section .ctors) priority 102\n");
+    return;
 }
 */
 

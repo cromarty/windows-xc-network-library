@@ -7,6 +7,7 @@ res
 *.la
 *.lo
 *.dll
+*.exe
 
 src/.deps/
 src/.libs/
