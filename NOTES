@@ -2,4 +2,17 @@
 Notes
 =====
 
+A DLL compiled with mingw, which is a port of gcc, does not call the
+usual `DllMain` function at startup, so there is no attach/detach
+function from which to call `WSAStartup()` and `WSACleanup()` at the
+appropriate times.
+
+So I have used the `gcc` `constructor/destructor` method.
+
+With reference to:
+
+https://stackoverflow.com/questions/2053029/how-exactly-does-attribute-constructor-work
+
+
+
 
