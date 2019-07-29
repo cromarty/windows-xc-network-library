@@ -69,15 +69,15 @@ int WINAPI __declspec(dllexport) net_socket_set_linger( int onoff, int linger, S
 } // end net_socket_set_linger
 
 
-int WINAPI __declspec (dllexport) net_socket_set_blocking_state(SOCKET *fdSock, int blocking_state) {
+int WINAPI __declspec(dllexport) net_socket_set_blocking_state(SOCKET *fdSock, int blocking_state, int *wsaErr) {
 	int rc;
 
 	rc = ioctlsocket( *fdSock, FIONBIO, (u_long FAR *)&blocking_state);
 	/* ioctlsocket() returns 0 on success */
 	if ( rc )
-		return WSAGetLastError();
+		*wsaErr = WSAGetLastError();
 
-	return 0;
+	return rc;
 
 } // end net_socket_set_blocking_state
 

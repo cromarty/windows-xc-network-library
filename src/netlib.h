@@ -20,7 +20,7 @@ SOCKET WINAPI CLASS_DECLSPEC net_get_tcp_stream_socket(int *wsaErr);
 int WINAPI CLASS_DECLSPEC net_socket_set_linger( int onoff, int linger, SOCKET *fdSock, int *wsaErr );
 
 
-int WINAPI CLASS_DECLSPEC net_socket_set_blocking_state(SOCKET *fdSock, int blocking_state);
+int WINAPI CLASS_DECLSPEC net_socket_set_blocking_state(SOCKET *fdSock, int blocking_state, int *wsaErr);
 
 
 
