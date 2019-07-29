@@ -8,23 +8,30 @@
 #include <windowsx.h>
 
 
+#ifdef __EXPORTING
+   #define CLASS_DECLSPEC    __declspec(dllexport)
+#else
+   #define CLASS_DECLSPEC    __declspec(dllimport)
+#endif
 
 
-//u_long  GetAddr(LPSTR);
+SOCKET WINAPI CLASS_DECLSPEC net_get_tcp_stream_socket(void);
+
+int WINAPI CLASS_DECLSPEC net_socket_set_linger( int onoff, int linger, SOCKET *fdSock );
 
 
-SOCKET WINAPI __declspec (dllexport) net_get_tcp_stream_socket(void);
-
-int WINAPI __declspec (dllexport) net_socket_set_linger( int onoff, int linger, SOCKET *fdSock );
-
-
-int WINAPI __declspec (dllexport) net_socket_set_blocking_state(SOCKET *fdSock, int blocking_state);
-
-
-
-int WINAPI __declspec (dllexport) sockConnect( char *szHost, u_short nPortNumber, SOCKET *fdSock, struct timeval stTimeOut );
-
+int WINAPI CLASS_DECLSPEC net_socket_set_blocking_state(SOCKET *fdSock, int blocking_state);
 
 
 
-WORD WINAPI __declspec (dllexport) sockClose( SOCKET fdSock );
+int WINAPI CLASS_DECLSPEC sockConnect( char *szHost, u_short nPortNumber, SOCKET *fdSock, struct timeval stTimeOut );
+
+
+
+
+WORD WINAPI CLASS_DECLSPEC sockClose( SOCKET fdSock );
+
+
+#endif
+
+

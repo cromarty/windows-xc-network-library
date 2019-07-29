@@ -5,13 +5,9 @@
 #include <windows.h>
 #include <windowsx.h>
 
+#include "netlib.h"
 
 
-
-u_long  GetAddr(LPSTR);
-
-
-int mapcount;
 
 BOOL WINAPI __declspec(dllexport) LibMain(HINSTANCE hDLLInst, DWORD fdwReason, LPVOID lpvReserved) {
 	WORD wVersionRequested = MAKEWORD(2,0);
