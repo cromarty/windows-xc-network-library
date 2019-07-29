@@ -40,8 +40,15 @@ BOOL WINAPI __declspec(dllexport) LibMain(HINSTANCE hDLLInst, DWORD fdwReason, L
 
 
 
-SOCKET WINAPI __declspec (dllexport) net_get_tcp_stream_socket(void) {
-	return socket( AF_INET, SOCK_STREAM, 0 );
+SOCKET WINAPI __declspec (dllexport) net_get_tcp_stream_socket(int *wsaErr) {
+    SOCKET fdSock;
+    if (( fdSock = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
+        *wsaErr = WSAGetLastError();
+        return INVALID_SOCKET;
+    }
+
+	return fdSock;
+
 } // end net_get_tcp_stream_socket
 
 

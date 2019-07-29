@@ -15,7 +15,7 @@
 #endif
 
 
-SOCKET WINAPI CLASS_DECLSPEC net_get_tcp_stream_socket(void);
+SOCKET WINAPI CLASS_DECLSPEC net_get_tcp_stream_socket(int *wsaErr);
 
 int WINAPI CLASS_DECLSPEC net_socket_set_linger( int onoff, int linger, SOCKET *fdSock );
 
