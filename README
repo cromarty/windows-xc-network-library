@@ -1,0 +1,6 @@
+
+
+See the file `README.md` for full details of the stuff in this repository.
+
+This file is only here because with the GNU autotools in use, automake
+fails if it does not exist (README.md with no extension).

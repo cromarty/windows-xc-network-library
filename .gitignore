@@ -1,0 +1,10 @@
+*~
+res
+
+# generated stuff
+*.o
+*.a
+*.la
+*.lo
+*.dll
+
